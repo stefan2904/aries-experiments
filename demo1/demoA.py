@@ -113,7 +113,8 @@ print('connection agent 2: state = ' + str(details.json()['result']['State']))
 
 
 
-# step("Agent 1: send some message to Agent 2")
+# step("Agent 1: send some message to Agent 2", 1)
+# TODO: follow https://github.com/hyperledger/aries-framework-go/blob/main/docs/rest/openapi_demo.md#steps-for-custom-message-handling
 
 # msg = 'hallo student, agent zwei!'
 # r = requests.post(AGENT1 + '/connections/' + connectionIDagent1 + '/send-message', json={'content': msg}, verify=False)
@@ -121,7 +122,14 @@ print('connection agent 2: state = ' + str(details.json()['result']['State']))
 
 
 
-# TODO: issue credential ?
+# step("Agent 1: register DID", 1)
+# TODO: # https://github.com/hyperledger/aries-framework-go/blob/main/docs/rest/openapi_demo.md#steps-for-creating-public-did-using-vdr-endpoint
+
+
+
+# step("Agent 1: issue credential", 1)
+# TODO: issue credential, follow https://github.com/hyperledger/aries-framework-go/blob/main/docs/rest/openapi_demo.md#how-to-issue-credentials-through-the-issue-credential-protocol
+
 
 
 
