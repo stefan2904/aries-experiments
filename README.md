@@ -24,13 +24,10 @@
 * some configuration in `demo1/.env`
 
 
+### Run it
+
 ```bash
 cd demo1
-
 docker-compose -f docker-compose.yml up --force-recreate -d
-
 python3 demoA.py
 ```
-
-
-
