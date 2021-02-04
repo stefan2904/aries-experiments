@@ -6,7 +6,7 @@ schemes:
 - https
 swagger: "2.0"
 info:
-  title: (Aries Agent REST Server) of VC4SM University.
+  title: (Aries Agent REST Server) of aries-framework-go.
   license:
     name: 'SPDX-License-Identifier: Apache-2.0'
   version: 0.1.0
@@ -412,7 +412,7 @@ paths:
                 goal:
                   type: string
                   x-go-name: Goal
-                goal-code:
+                goal_code:
                   type: string
                   x-go-name: GoalCode
                 label:
@@ -551,7 +551,7 @@ paths:
                 goal:
                   type: string
                   x-go-name: Goal
-                goal-code:
+                goal_code:
                   type: string
                   x-go-name: GoalCode
                 label:
@@ -604,7 +604,7 @@ paths:
                 goal:
                   type: string
                   x-go-name: Goal
-                goal-code:
+                goal_code:
                   type: string
                   x-go-name: GoalCode
                 label:
@@ -1505,17 +1505,17 @@ paths:
                 goal:
                   type: string
                   x-go-name: Goal
-                goal-code:
+                goal_code:
                   type: string
                   x-go-name: GoalCode
-                label:
-                  type: string
-                  x-go-name: Label
-                protocols:
+                handshake_protocols:
                   type: array
                   items:
                     type: string
                   x-go-name: Protocols
+                label:
+                  type: string
+                  x-go-name: Label
                 service:
                   type: array
                   items:
@@ -1560,7 +1560,7 @@ paths:
                 goal:
                   type: string
                   x-go-name: Goal
-                goal-code:
+                goal_code:
                   type: string
                   x-go-name: GoalCode
                 label:
@@ -2883,15 +2883,37 @@ definitions:
     x-go-package: github.com/hyperledger/aries-framework-go/pkg/didcomm/protocol/issuecredential
   Record:
     type: object
-    title: Record model.
+    title: Record model containing name, ID and other fields of interest.
     properties:
+      context:
+        type: array
+        items:
+          type: string
+        x-go-name: Context
       id:
         type: string
         x-go-name: ID
+      my_did:
+        description: |-
+          MyDID and TheirDID contains information about participants who were involved in the process
+          of issuing a credential or presentation.
+        type: string
+        x-go-name: MyDID
       name:
         type: string
         x-go-name: Name
-    x-go-package: github.com/hyperledger/aries-framework-go/pkg/store/did
+      subjectId:
+        type: string
+        x-go-name: SubjectID
+      their_did:
+        type: string
+        x-go-name: TheirDID
+      type:
+        type: array
+        items:
+          type: string
+        x-go-name: Type
+    x-go-package: github.com/hyperledger/aries-framework-go/pkg/store/verifiable
   RegisterHTTPMsgSvcArgs:
     type: object
     title: RegisterHTTPMsgSvcArgs contains parameters for registering an HTTP over
@@ -3749,17 +3771,17 @@ responses:
             goal:
               type: string
               x-go-name: Goal
-            goal-code:
+            goal_code:
               type: string
               x-go-name: GoalCode
-            label:
-              type: string
-              x-go-name: Label
-            protocols:
+            handshake_protocols:
               type: array
               items:
                 type: string
               x-go-name: Protocols
+            label:
+              type: string
+              x-go-name: Label
             service:
               type: array
               items:
@@ -3786,7 +3808,7 @@ responses:
             goal:
               type: string
               x-go-name: Goal
-            goal-code:
+            goal_code:
               type: string
               x-go-name: GoalCode
             label:
@@ -4047,5 +4069,3 @@ responses:
     description: unregisterRouteRes model
     schema:
       type: object
-
-
