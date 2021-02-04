@@ -2,6 +2,7 @@ import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 import base64
+import json
 
 # https://github.com/hyperledger/aries-framework-go/blob/main/docs/rest/openapi_demo.md#steps-for-didexchange
 
@@ -306,22 +307,27 @@ for cred in creds['result']:
     print(cred)
 
 
-step("Agent  2: print '" + label + "' credential", 2)
+step("Agent  2: print '" + label + "' credential by name", 2)
 
 c = requests.get(
     AGENT2 +
     '/verifiable/credential/name/' + label,
     verify=False).json()
-print(c)
+#print(c)
+print(json.dumps(c, indent=4))
 
+
+
+step("Agent  2: print '" + label + "' credential by id", 2)
 
 b64id = base64.b64encode(c['id'].encode('ascii')).decode('ascii')
-print(b64id)
+#print(b64id)
 
 c2 = requests.get(
     AGENT2 + '/verifiable/credential/' + b64id,
     verify=False).json()
-print(c2)
+#print(c2)
+print(json.dumps(json.loads(c2['verifiableCredential']), indent=4))
 
 
 exit()
