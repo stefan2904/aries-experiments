@@ -11,7 +11,7 @@
 
 
 
-## Demo 1:
+## Demo 1
 
 * Simple agent connection, using Peer DID, *no sidetree or ledger*
     - Establishes DIDExchange connection and issues a credential to Agent 2
@@ -31,3 +31,20 @@ cd demo1
 docker-compose -f docker-compose.yml up --force-recreate -d
 python3 demoA.py
 ```
+
+
+## Demo 2
+
+* similar as demo 1, but with sidetree
+* → *currently not working*
+
+
+
+
+## Update Agent API specs
+
+* clone/pull https://github.com/hyperledger/aries-framework-go
+* run `make generate-openapi-demo-specs`
+* copy into demo1: `cp ../aries-framework-go/test/bdd/fixtures/demo/openapi/specs/openapi-localhost:8082.yml demo1/specs/openapi-university.yml`
+* copy into demo2: `cp ../aries-framework-go/test/bdd/fixtures/demo/openapi/specs/openapi-localhost:8082.yml demo2/specs/openapi-university.yml`
+* etc.
