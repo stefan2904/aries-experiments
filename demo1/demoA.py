@@ -112,6 +112,7 @@ step("Agent 1: List own invite again", 1)
 
 connections = requests.get(AGENT1 + '/connections', verify=False).json()
 for connection in connections['results']:
+    #print(connection)
     if connection['InvitationID'] == inviteIDagent1:
         print('connection agent 1: ' + str(connection))
         connectionIDagent1 = connection['ConnectionID']
@@ -151,6 +152,16 @@ details = requests.post(
 print('details accept invite at agent 1: ' + details.text)
 
 
+step("Agent 1: List own invites, again again", 1)
+
+connections = requests.get(AGENT1 + '/connections', verify=False).json()
+for connection in connections['results']:
+    if connection['InvitationID'] == inviteIDagent1:
+        print('NEW connection:', connection)
+    else:
+        print('old connection:', connection)
+
+
 step("Get connection states again")
 
 details = requests.get(
@@ -159,8 +170,8 @@ details = requests.get(
     connectionIDagent1,
     verify=False)
 print('connection agent 1: state = ' + str(details.json()['result']['State']))
-print('MyDID:    ' + str(details.json()['result']['MyDID']))
-print('TheirDID: ' + str(details.json()['result']['TheirDID']))
+print('MyDID:    =Uni:     ' + str(details.json()['result']['MyDID']))
+print('TheirDID: =Student: ' + str(details.json()['result']['TheirDID']))
 DID_AGENT1 = details.json()['result']['MyDID']
 
 details = requests.get(
@@ -169,8 +180,8 @@ details = requests.get(
     connectionIDagent2,
     verify=False)
 print('connection agent 2: state = ' + str(details.json()['result']['State']))
-print('MyDID:    ' + str(details.json()['result']['MyDID']))
-print('TheirDID: ' + str(details.json()['result']['TheirDID']))
+print('MyDID:    =Student: ' + str(details.json()['result']['MyDID']))
+print('TheirDID: =Uni:     ' + str(details.json()['result']['TheirDID']))
 DID_AGENT2 = details.json()['result']['MyDID']
 
 
